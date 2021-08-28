@@ -1,33 +1,36 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="java">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="java" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Users table</title>
 </head>
 <body>
 <div>
     <h1>Users</h1>
     <table>
-        <th>Name</th>
-        <th>Lastname</th>
-        <th>age</th>
-        <th:block th:each= "user : ${users}">
-            <tr>
-                <td th:text="${user.name}">Nothing</td>
-                <td th:text="${user.lastName}">Nothing</td>
-                <td th:text="${user.age}">Nothing</td>
-                <td>
-                    <label for ="linkDelete"></label>
-                        <a id="linkDelete" th:href="@{/users/home/linkDelete(status = ${user.getUser_id})}">delete</a>
-                    <label for="linkEdit"></label>
-                    <a id = "linkEdit" th:href="@{/users/{id}/editUser(id=${user.getUser_id})}">edit</a>
-                </td>
 
-            </tr>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th:block th:each="user : ${users}" >
+            <tr>
+            <td th:text="${user.username}">Nothing</td>
+            <td th:text="${user.password}">Nothing</td>
+            <td th:text="${user.email}">Nothing</td>
+            <th:block th:each="role : ${user.getRoles}">
+                <td th:text="${role.getRole}"></td>
+        <td>
+            <label for="linkDelete"></label>
+            <a id="linkDelete" th:href="@{/admin/home/linkDelete(status = ${user.getId})}">delete</a>
+            <label for="linkEdit"></label>
+            <a id="linkEdit" th:href="@{/admin/{id}/editUser(id=${user.getId})}">edit</a>
+        </td>
+        </tr>
         </th:block>
     </table>
     <h3>
-        <a href="/users/addUser">New User</a>
+        <a href="/admin/addUser">New User</a>
     </h3>
 </div>
 </body>

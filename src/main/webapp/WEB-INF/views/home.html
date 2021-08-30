@@ -18,8 +18,6 @@
             <td th:text="${user.username}">Nothing</td>
             <td th:text="${user.password}">Nothing</td>
             <td th:text="${user.email}">Nothing</td>
-            <th:block th:each="role : ${user.getRoles}">
-                <td th:text="${role.getRole}"></td>
         <td>
             <label for="linkDelete"></label>
             <a id="linkDelete" th:href="@{/admin/home/linkDelete(status = ${user.getId})}">delete</a>
@@ -31,6 +29,9 @@
     </table>
     <h3>
         <a href="/admin/addUser">New User</a>
+    </h3>
+    <h3>
+        <a href="/logout">Logout</a>
     </h3>
 </div>
 </body>

@@ -3,13 +3,20 @@ package ru.crud.service;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import ru.crud.model.User;
 
-import java.sql.SQLException;
-import java.util.List;
+import java.util.Set;
 
 public interface UserService extends UserDetailsService {
-    boolean addUser(User user) throws SQLException;
-    User showUser(Long id);
-    void removeUser(Long id);
-    List userList();
-    void update(Long id, User user);
+    User addUser(User role);
+
+    void deleteById(Long id);
+
+    User findById(Long id);
+
+    User findByName(String name);
+
+    Set<User> getAllUsers();
+
+    void updateUser(User user, Long id, String role);
+
+
 }
